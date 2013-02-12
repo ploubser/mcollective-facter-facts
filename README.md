@@ -6,8 +6,6 @@ The facter plugin enables mcollective to use facter as a source for facts about 
 
 This plugin uses a 300 second cache for facts by default, after that it will reset facter and regenerate all the facts, this adds a second or so overhead to discovery.
 
-This plugin is released as GPLv2 same as the license of facter.
-
 Note: This method suffers from some issues due to how slow Facter can be in some cases, you should use Facter via YAML instead.
 
 ##Installation
