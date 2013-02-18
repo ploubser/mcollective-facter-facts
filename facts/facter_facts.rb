@@ -16,7 +16,7 @@ module MCollective
 
         ENV['FACTERLIB'] = Config.instance.pluginconf.fetch('facter.facterlib', nil) || '/var/lib/puppet/lib/facter:/var/lib/puppet/facts'
 
-        Log.debug("Have FACTERLIB: #{ENV['FACTERLIB']}")
+        Log.debug("Loading facts from FACTERLIB: #{ENV['FACTERLIB']}")
 
         Facter.reset
         facts = Facter.to_hash

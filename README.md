@@ -1,10 +1,8 @@
-#Facter Fact Source
+#MCollective Facter Fact Source
 
 ##Overview
 
 The facter plugin enables mcollective to use facter as a source for facts about your system.
-
-This plugin uses a 300 second cache for facts by default, after that it will reset facter and regenerate all the facts, this adds a second or so overhead to discovery.
 
 Note: This method suffers from some issues due to how slow Facter can be in some cases, you should use Facter via YAML instead.
 
@@ -16,16 +14,22 @@ Note: This method suffers from some issues due to how slow Facter can be in some
 
 The following options can be set in server.cfg
 
-* factsource - Sets the fact source.
 * plugin.facter.facterlib - where to find custom facts. Defaults to /var/lib/puppet/lib/facter:/var/lib/puppet/facts
-* fact_cache_time - fact cache duration. Defaults to 300
+
+Sample configuration:
+
+```
+factsource = facter
+plugin.facter.facterlib = /var/lib/puppet/lib/otherfacts
+fact_cache_time = 200
+```
 
 ##Usage
 
 You should now be able to use all your facter facts in discovery and fact reporting.
 
 ```
-%mco rpc rpcutil get_fact fact=osfamily
+% mco rpc rpcutil get_fact fact=osfamily
 Discovering hosts using the mc method for 2 second(s) .... 2
 
  * [ ============================================================> ] 2 / 2
@@ -51,7 +55,7 @@ Finished processing 2 / 2 hosts in 3105.79 ms
 ```
 
 ```
-mco rpc rpcutil ping -F osfamily=RedHat
+% mco rpc rpcutil ping -F osfamily=RedHat
 Discovering hosts using the mc method for 2 second(s) .... 1
 
  * [ ============================================================> ] 1 / 1
@@ -63,4 +67,21 @@ node2.your.com
 
 
 Finished processing 1 / 1 hosts in 46.86 ms
+```
+
+```
+% mco inventory node1.your.com
+Inventory for node1.your.com:
+
+   ...
+   ...
+
+   Facts:
+      architecture => x86_64
+      augeasversion => 0.9.0
+      boardmanufacturer => Intel Corporation
+      boardproductname => 440BX Desktop Reference Platform
+      boardserialnumber => None
+      ...
+      ...
 ```
