@@ -4,7 +4,7 @@
 
 The facter plugin enables mcollective to use facter as a source for facts about your system.
 
-Note: This method suffers from some issues due to how slow Facter can be in some cases, you should use Facter via YAML instead.
+Note: This method suffers from some issues due to how slow Facter can be in some cases, you should use [Facter via YAML](http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/FactsFacterYAML) instead.
 
 ##Installation
 
